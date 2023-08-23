@@ -44,10 +44,7 @@ const SidebarWithHeader = ({children} : SideBarProps) => {
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
-      <Button colorScheme='blue' >Add new</Button>
-        <SimpleGrid columns={4} spacing={1}>
-            {children}
-        </SimpleGrid>
+        {children}
       </Box>
     </Box>
   )

@@ -6,9 +6,6 @@ const InternsSection = () => {
   return (
     <SidebarWithHeader>
         <InternCard />
-        <InternCard />
-        <InternCard />
-        <InternCard />
     </SidebarWithHeader>
   )
 }

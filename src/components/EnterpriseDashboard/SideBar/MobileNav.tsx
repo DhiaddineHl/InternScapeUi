@@ -1,6 +1,7 @@
 import { FlexProps, Text, Flex, useColorModeValue, IconButton, HStack, Menu, MenuButton, Avatar, VStack, MenuList, MenuItem, MenuDivider, Box } from "@chakra-ui/react"
 
 import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi"
+import { useNavigate } from "react-router-dom"
 
 interface MobileProps extends FlexProps {
     onOpen: () => void
@@ -8,6 +9,10 @@ interface MobileProps extends FlexProps {
   
   
   const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
+
+
+    const navigate = useNavigate();
+
     return (
       <Flex
         ml={{ base: 0, md: 60 }}
@@ -68,7 +73,10 @@ interface MobileProps extends FlexProps {
                 <MenuItem>Profile</MenuItem>
                 <MenuItem>Settings</MenuItem>
                 <MenuDivider />
-                <MenuItem>Sign out</MenuItem>
+                <MenuItem onClick={() => {
+                  localStorage.clear();
+                  navigate("/")
+                }} >Sign out</MenuItem>
               </MenuList>
             </Menu>
           </Flex>

@@ -9,6 +9,7 @@ import SupervisorCard from "./components/EnterpriseDashboard/SupervisorCard"
 import SupervisorsSection from "./pages/SupervisorsSection"
 import TopicsSection from "./pages/TopicsSection"
 import InternsSection from "./pages/InternsSection"
+import HomePage from "./pages/HomePage"
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <Route element={<SupervisorsSection />} path="/supervisors" ></Route>
       <Route element={<InternsSection />} path="/interns" ></Route>
       <Route element={<TopicsSection />} path="/topics" ></Route>
+      <Route element={<HomePage />} path="/Home" ></Route>
     </Routes>
 
   )

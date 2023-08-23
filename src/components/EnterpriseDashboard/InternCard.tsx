@@ -9,12 +9,25 @@ import {
     Button,
     useColorModeValue,
     Divider,
+    SimpleGrid,
   } from '@chakra-ui/react'
+import useInterns from '../../hooks/enterpriseAppHooks/useInterns'
   
   export default function InternCard() {
+
+
+    const {data : interns, error, isLoading} = useInterns();
+
     return (
+      <SimpleGrid  columns={3} >
+
+      {interns?.map((intern) => (
+
+
+
       <Center py={6}>
         <Box
+        key={intern.id}
           maxW={'320px'}
           w={'full'}
           bg={useColorModeValue('white', 'gray.900')}
@@ -40,21 +53,21 @@ import {
             }}
           />
           <Heading fontSize={'2xl'} fontFamily={'body'}>
-            Intern Name
+            {intern.name}
           </Heading>
           <Text fontWeight={600} color={'gray.500'} mb={4}>
-            intern@mail.com
+            {intern.email}
           </Text>
           <Text
             textAlign={'center'}
             color={useColorModeValue('gray.700', 'gray.400')}
             px={3}
             m={3}>
-            Speciality
+            {intern.speciality}
           </Text>
           <Divider />
           <Heading fontSize={'l'} fontFamily={'body'} m={3}>
-            Topic :
+            Topic : {intern.topicTitle}
           </Heading>
           <Divider />
           <Heading fontSize={'l'} fontFamily={'body'} m={3}>
@@ -90,6 +103,9 @@ import {
           </Stack>
         </Box>
       </Center>
+      ))}
+
+      </SimpleGrid>
     )
   }
   

@@ -12,7 +12,9 @@ interface Credentials {
   
   export interface Response {
     accessToken : string,
-    refreshToken : string
+    refreshToken : string,
+    userType : string,
+    userId : number
   }
 
   interface Error {
@@ -33,6 +35,8 @@ const useLogin = () => {
             console.log(res.data);
             
             localStorage.setItem('token', res.data.accessToken)
+            localStorage.setItem('role', res.data.userType)
+            localStorage.setItem('userId', res.data.userId.toString())
 
           }),
           onSuccess : () =>{
@@ -43,6 +47,7 @@ const useLogin = () => {
                 duration: 4000,
                 isClosable: true,
               })
+              navigate("/Home")
         },
         onError : (error : AxiosError<Error>) => {
             const errorMessage = error.response?.data.errorMessage;
