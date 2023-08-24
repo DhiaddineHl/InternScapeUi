@@ -6,9 +6,6 @@ const TopicsSection = () => {
   return (
     <SidebarWithHeader>
         <TopicCard />
-        <TopicCard />
-        <TopicCard />
-        <TopicCard />
     </SidebarWithHeader>
   )
 }

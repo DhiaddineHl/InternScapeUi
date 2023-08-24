@@ -9,6 +9,7 @@ interface Intern {
     email : string
     speciality : string
     topicTitle : string
+    supervisor : string
 }
 
 const useInterns = () => {

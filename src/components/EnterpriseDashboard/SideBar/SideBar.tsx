@@ -13,7 +13,7 @@ import {GrAdd} from 'react-icons/gr'
 import SidebarContent from './SideBarContetnt';
 import MobileNav from './MobileNav';
 import SupervisorCard from '../SupervisorCard';
-import InternCard from '../InternCard';
+import InternCard from '../InternCards';
 import { ReactNode } from 'react';
 
 
