@@ -7,8 +7,10 @@ interface Topic {
     id : number
     title : string
     description : string
-    durartion : string
+    duration : string
     isAvailable : boolean
+    internName : string,
+    supervisorName : string
     activities : Activity[]
 }
 

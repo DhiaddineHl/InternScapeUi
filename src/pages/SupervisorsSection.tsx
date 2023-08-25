@@ -7,9 +7,6 @@ const SupervisorsSection = () => {
   return (
    <SidebarWithHeader>
     <SupervisorCard />
-    <SupervisorCard />
-    <SupervisorCard />
-    <SupervisorCard />
    </SidebarWithHeader> 
   )
 }

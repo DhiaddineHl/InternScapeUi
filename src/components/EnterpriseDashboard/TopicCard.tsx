@@ -15,7 +15,7 @@ const TopicCard = () => {
 
 
 
-      <GridItem>
+      <GridItem  key={topic.id} >
         <Card m={3} >
           <CardHeader>
         <Heading size='md'>{topic.title}</Heading>
@@ -23,7 +23,7 @@ const TopicCard = () => {
           <CardBody>
         <Stack divider={<StackDivider />} spacing='4'>
           <Box>
-            <Heading size='xs' textTransform='uppercase'>
+            <Heading size='xs'>
               Discription :
             </Heading>
             <Text pt='2' fontSize='sm'>
@@ -31,20 +31,19 @@ const TopicCard = () => {
             </Text>
           </Box>
           <Box>
-            <Heading size='xs' textTransform='uppercase'>
-              Supervisor :
+            <Heading size='xs'>
+              Supervisor : {topic.supervisorName}
             </Heading>
-            <Text pt='2' fontSize='sm'>
-
-            </Text>
           </Box>
           <Box>
-            <Heading size='xs' textTransform='uppercase'>
-              Intern :
+            <Heading size='xs'>
+              Intern : {topic.internName}
             </Heading>
-            <Text pt='2' fontSize='sm'>
-
-            </Text>
+          </Box>
+          <Box>
+            <Heading size='xs'>
+              Duration : {topic.duration}
+            </Heading>
           </Box>
           <Stack mt={8} direction={'row'} spacing={4}>
               <Button

@@ -3,31 +3,31 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
 
-interface Intern {
+interface Supervisor {
     id : number
     name : string
     email : string
     speciality : string
-    topicTitle : string
-    supervisorName : string
+    interns : string[]
+    topics : string[]
 }
 
-const useInterns = () => {
+const useSupervisors = () => {
 
     const enterpriseId = localStorage.getItem('userId');
     const token = localStorage.getItem('token')
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-    const fetchInterns = () =>
+    const fetchSupervisors = () =>
     axios
-        .get<Intern[]>("http://localhost:8080/api/v1/intern/byEnterprise/" + enterpriseId)
+        .get<Supervisor[]>("http://localhost:8080/api/v1/supervisor/byEnterprise/" + enterpriseId)
         .then(res => res.data)
 
-    return useQuery<Intern[]>({
-        queryKey : ['interns'],
-        queryFn : fetchInterns
+    return useQuery<Supervisor[]>({
+        queryKey : ['supervisors'],
+        queryFn : fetchSupervisors
     })
 
 }
 
-export default useInterns
+export default useSupervisors

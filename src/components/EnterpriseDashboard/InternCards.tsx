@@ -12,6 +12,7 @@ import {
     SimpleGrid,
     Grid,
     GridItem,
+    Spinner,
   } from '@chakra-ui/react'
 import useInterns from '../../hooks/enterpriseAppHooks/useInterns'
   
@@ -21,16 +22,14 @@ import useInterns from '../../hooks/enterpriseAppHooks/useInterns'
     const {data : interns, error, isLoading} = useInterns();
 
     return (
+
+      <>
+      {isLoading && <Spinner />}
       <Grid templateColumns='repeat(3, 1fr)' gap={2} >
-
       {interns?.map((intern) => (
-
-
-
-      <GridItem>
+      <GridItem key={intern.id} >
         <Center py={3}>
           <Box
-          key={intern.id}
             maxW={'320px'}
             w={'full'}
             bg={useColorModeValue('white', 'gray.900')}
@@ -74,7 +73,7 @@ import useInterns from '../../hooks/enterpriseAppHooks/useInterns'
             </Heading>
             <Divider />
             <Heading fontSize={'l'} fontFamily={'body'} m={3}>
-              Supervisor : {intern.supervisor}
+              Supervisor : {intern.supervisorName}
             </Heading>
             <Stack mt={8} direction={'row'} spacing={4}>
               <Button
@@ -108,8 +107,8 @@ import useInterns from '../../hooks/enterpriseAppHooks/useInterns'
         </Center>
       </GridItem>
       ))}
-
       </Grid>
+      </>
     )
   }
   
