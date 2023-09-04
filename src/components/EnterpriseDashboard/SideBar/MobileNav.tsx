@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom"
 interface MobileProps extends FlexProps {
     onOpen: () => void
   }
-  
-  
+  const name = localStorage.getItem('userName');
+  const role = localStorage.getItem('role');
+
   const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 
 
@@ -57,9 +58,9 @@ interface MobileProps extends FlexProps {
                     alignItems="flex-start"
                     spacing="1px"
                     ml="2">
-                    <Text fontSize="sm">Justina Clark</Text>
+                    <Text fontSize="sm">{name}</Text>
                     <Text fontSize="xs" color="gray.600">
-                      Admin
+                    {role}
                     </Text>
                   </VStack>
                   <Box display={{ base: 'none', md: 'flex' }}>

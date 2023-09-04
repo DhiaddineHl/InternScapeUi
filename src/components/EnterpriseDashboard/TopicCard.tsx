@@ -1,75 +1,95 @@
-import { Card, CardHeader, CardBody,Text, CardFooter, Box, Heading, Stack, StackDivider, Button, Grid, GridItem } from '@chakra-ui/react'
+import { Card, CardHeader, CardBody,Text, Box, Heading, Stack, StackDivider, Button, Grid, GridItem, Spinner, Flex, Spacer } from '@chakra-ui/react'
 import useTopics from '../../hooks/enterpriseAppHooks/useTopics'
-
+import { DeleteIcon } from '@chakra-ui/icons'
+import TopicDescriptionModal from './TopicDescriptionModal';
+import TopicModalVisibility from '../../stores/TopicModalVisibility';
+import TopicIdSetter from '../../stores/TopicIdSetter';
 
 const TopicCard = () => {
 
 
   const {data : topics, error, isLoading} = useTopics();
-
-
+  const {onOpen, isOpen} = TopicModalVisibility();
+  const {setId, topicId} = TopicIdSetter();
   return (
+    <>
+    {isLoading && <Spinner />}
+    {isOpen && <TopicDescriptionModal />}
     <Grid templateColumns='repeat(2, 1fr)' gap={2} >
-
     {topics?.map(topic => (
-
-
-
       <GridItem  key={topic.id} >
         <Card m={3} >
           <CardHeader>
-        <Heading size='md'>{topic.title}</Heading>
+        <Flex>
+          <Heading size='md'>{topic.title}</Heading>
+          <Spacer />
+          <Button colorScheme='red'>
+            <DeleteIcon />
+          </Button>
+        </Flex>
           </CardHeader>
           <CardBody>
         <Stack divider={<StackDivider />} spacing='4'>
           <Box>
             <Heading size='xs'>
-              Discription :
+              Supervisor :
             </Heading>
             <Text pt='2' fontSize='sm'>
-              {topic.description}
+              {topic.supervisorName}
             </Text>
           </Box>
           <Box>
             <Heading size='xs'>
-              Supervisor : {topic.supervisorName}
+              Intern :
             </Heading>
+            <Text pt='2' fontSize='sm'>
+              {topic.internName}
+            </Text>
           </Box>
           <Box>
             <Heading size='xs'>
-              Intern : {topic.internName}
+              Duration :
             </Heading>
+            <Text pt='2' fontSize='sm'>
+              {topic.duration}
+            </Text>
           </Box>
-          <Box>
-            <Heading size='xs'>
-              Duration : {topic.duration}
-            </Heading>
-          </Box>
+          
           <Stack mt={8} direction={'row'} spacing={4}>
               <Button
               isDisabled={!topic.isAvailable}
                 flex={1}
+                variant={'outline'}
+                colorScheme='green'
                 fontSize={'sm'}
-                rounded={'full'}
                 _focus={{
                   bg: 'gray.200',
                 }}>
                 Assign
               </Button>
               <Button
+              onClick={() => {
+                setId(topic.id);
+                console.log(topicId);
+                
+                onOpen()
+              }}
+                flex={1}
+                variant={'outline'}
+                colorScheme='blue'
+                fontSize={'sm'}
+                _focus={{
+                  bg: 'gray.200',
+                }}>
+                Description
+              </Button>
+              <Button
                 flex={1}
                 fontSize={'sm'}
-                rounded={'full'}
-                bg={'blue.400'}
-                color={'white'}
-                boxShadow={
-                  '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                }
-                _hover={{
-                  bg: 'blue.500',
-                }}
+                variant={'outline'}
+                colorScheme='purple'
                 _focus={{
-                  bg: 'blue.500',
+                  bg: 'gray.200',
                 }}>
                 Edit
               </Button>
@@ -81,6 +101,7 @@ const TopicCard = () => {
     ))}
 
     </Grid>
+    </>
   )
 }
 

@@ -14,7 +14,8 @@ interface Credentials {
     accessToken : string,
     refreshToken : string,
     userType : string,
-    userId : number
+    userId : number,
+    userName : string
   }
 
   interface Error {
@@ -37,6 +38,7 @@ const useLogin = () => {
             localStorage.setItem('token', res.data.accessToken)
             localStorage.setItem('role', res.data.userType)
             localStorage.setItem('userId', res.data.userId.toString())
+            localStorage.setItem('userName', res.data.userName)
 
           }),
           onSuccess : () =>{
