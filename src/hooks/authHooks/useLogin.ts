@@ -18,7 +18,7 @@ interface Credentials {
     userName : string
   }
 
-  interface Error {
+  export interface Error {
     errorMessage : string,
     codeStatus : number
   }

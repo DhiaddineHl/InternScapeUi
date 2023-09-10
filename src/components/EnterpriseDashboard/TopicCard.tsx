@@ -4,17 +4,21 @@ import { DeleteIcon } from '@chakra-ui/icons'
 import TopicDescriptionModal from './TopicDescriptionModal';
 import TopicModalVisibility from '../../stores/TopicModalVisibility';
 import TopicIdSetter from '../../stores/TopicIdSetter';
+import TopicAssigningModalVisibility from '../../stores/TopicAssigningModalVisibility';
+import TopicAssigningModal from './TopicAssigningModal';
 
 const TopicCard = () => {
 
 
   const {data : topics, error, isLoading} = useTopics();
   const {onOpen, isOpen} = TopicModalVisibility();
+  const {isAssignOpen, onOpenAssign, onCloseAssign} = TopicAssigningModalVisibility();
   const {setId, topicId} = TopicIdSetter();
   return (
     <>
     {isLoading && <Spinner />}
     {isOpen && <TopicDescriptionModal />}
+    {isAssignOpen && <TopicAssigningModal />}
     <Grid templateColumns='repeat(2, 1fr)' gap={2} >
     {topics?.map(topic => (
       <GridItem  key={topic.id} >
@@ -57,6 +61,11 @@ const TopicCard = () => {
           
           <Stack mt={8} direction={'row'} spacing={4}>
               <Button
+              onClick={() => {
+                setId(topic.id)
+                onOpenAssign()
+              }
+              }
               isDisabled={!topic.isAvailable}
                 flex={1}
                 variant={'outline'}
@@ -71,7 +80,6 @@ const TopicCard = () => {
               onClick={() => {
                 setId(topic.id);
                 console.log(topicId);
-                
                 onOpen()
               }}
                 flex={1}
