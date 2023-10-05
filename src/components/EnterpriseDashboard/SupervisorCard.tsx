@@ -88,7 +88,12 @@ export default function SupervisorCard() {
               fontSize={'sm'}
               _focus={{
                 bg: 'gray.200',
-              }}>
+              }}
+              _hover={{
+                bg : 'green.400',
+                color : 'white'   
+              }}
+              >
               Contact
             </Button>
             <Button
@@ -104,7 +109,12 @@ export default function SupervisorCard() {
               fontSize={'sm'}
               _focus={{
                 bg: 'gray.200',
-              }}>
+              }}
+              _hover={{
+                bg : 'blue.400',
+                color : 'white'   
+              }}
+              >
               Assign
             </Button>
           </Stack>

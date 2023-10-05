@@ -55,7 +55,10 @@ const TopicCard = () => {
         <Flex>
           <Heading size='md'>{topic.title}</Heading>
           <Spacer />
-          <Button onClick={onOpenForTopicDelete} colorScheme='red'>
+          <Button onClick={() => {
+            setId(topic.id);
+            onOpenForTopicDelete();
+          }} colorScheme='red'>
             <DeleteIcon />
           </Button>
         </Flex>

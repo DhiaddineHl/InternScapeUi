@@ -1,12 +1,20 @@
 import { Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Box, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 import TopicDeletionConfiramationModalVisibility from '../../stores/TopicDeletionConfirmationModalVisibility'
+import useTopicDelete from '../../hooks/enterpriseAppHooks/useTopicDelete'
+import TopicIdSetter from '../../stores/TopicIdSetter'
 
 const TopicDeleteConfiramtionModal = () => {
 
     const finalRef = React.useRef(null)
 
+    const deleteTopic = useTopicDelete(TopicIdSetter(s => s.topicId));
+
     const {isDeleteTopicOpen, onCloseForTopicDelete, onOpenForTopicDelete} = TopicDeletionConfiramationModalVisibility();
+
+    const onTopicDelete = () => {
+      deleteTopic.mutate();
+    }
 
   return (
     <>
@@ -20,7 +28,10 @@ const TopicDeleteConfiramtionModal = () => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='red' mr={3} onClick={onCloseForTopicDelete}>
+            <Button isLoading={deleteTopic.isLoading} colorScheme='red' mr={3} onClick={() => {
+              onTopicDelete();
+              onCloseForTopicDelete();
+            }}>
               Delete
             </Button>
             <Button onClick={onCloseForTopicDelete} variant='ghost'>Cancel</Button>
