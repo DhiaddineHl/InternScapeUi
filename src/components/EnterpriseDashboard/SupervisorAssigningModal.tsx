@@ -1,33 +1,33 @@
 import { Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, Select } from '@chakra-ui/react'
-import TopicAssigningModalVisibility from '../../stores/TopicAssigningModalVisibility'
 import useInterns from '../../hooks/enterpriseAppHooks/useInterns';
 import {FieldValues, useForm } from 'react-hook-form';
-import TopicIdSetter from '../../stores/TopicIdSetter';
-import useTopicAssigning from '../../hooks/enterpriseAppHooks/useTopicAssigning';
+import SupervisorAssigningModalVisibility from '../../stores/SupervisorAssigningModalVisibility';
+import SupervisorIdSetter from '../../stores/SupervisorIdSetter';
+import useSupervisorAssigning from '../../hooks/enterpriseAppHooks/useSupervisorAssigning';
 
-const InternAssigningModal = () => {
+const SupervisorAssigningModal = () => {
 
-    const {isOpenForTopic,onOpenForTopic,onCloseForTopic} = TopicAssigningModalVisibility();
+    const {isOpenForSupervisor,onOpenForSupervisor,onCloseForSupervisor} = SupervisorAssigningModalVisibility();
     const {data : interns, error, isLoading} = useInterns();
     const {register, handleSubmit} = useForm();
-    const assignTopic = useTopicAssigning();
+    const assignSupervisor = useSupervisorAssigning();
 
     // const {setId, internId} = InternIdSetter();
-    const topicId = TopicIdSetter(s => s.topicId);
+    const supervisorId = SupervisorIdSetter(s => s.supervisorId);
 
     const onAssign = (data : FieldValues) => {
 
-    assignTopic.mutate({
+    assignSupervisor.mutate({
         internId : data.internId,
-        topicId : topicId
+        supervisorId : supervisorId
     })
 
     }
   return (
     <>
       <Modal
-        isOpen={isOpenForTopic}
-        onClose={onCloseForTopic}
+        isOpen={isOpenForSupervisor}
+        onClose={onCloseForSupervisor}
       >
         <ModalOverlay />
         <ModalContent>
@@ -46,7 +46,7 @@ const InternAssigningModal = () => {
             <Button type='submit' colorScheme='blue' mr={3}>
               Save
             </Button>
-            <Button onClick={onCloseForTopic}>Cancel</Button>
+            <Button onClick={onCloseForSupervisor}>Cancel</Button>
           </ModalFooter>
             </form>
         </ModalContent>
@@ -55,4 +55,4 @@ const InternAssigningModal = () => {
   )
 }
 
-export default InternAssigningModal;
+export default SupervisorAssigningModal;

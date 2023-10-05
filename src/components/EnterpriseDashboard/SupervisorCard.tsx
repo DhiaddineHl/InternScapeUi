@@ -14,14 +14,20 @@ import {
   Spinner,
 } from '@chakra-ui/react'
 import useSupervisors from '../../hooks/enterpriseAppHooks/useSupervisors';
+import SupervisorAssigningModalVisibility from '../../stores/SupervisorAssigningModalVisibility';
+import SupervisorAssigningModal from './SupervisorAssigningModal';
+import SuperviosrIdSetter from '../../stores/SupervisorIdSetter';
 
 export default function SupervisorCard() {
 
   const {data : supervisors, error, isLoading} = useSupervisors();
+  const {isOpenForSupervisor,onOpenForSupervisor,onCloseForSupervisor} = SupervisorAssigningModalVisibility();
+  const {setId, supervisorId} = SuperviosrIdSetter();
 
   return (
     <>
     {isLoading && <Spinner />}
+    {isOpenForSupervisor && <SupervisorAssigningModal />}
     <Grid templateColumns='repeat(3, 1fr)' gap={2} >
     {supervisors?.map((supervisor) => (
     <GridItem
@@ -77,28 +83,38 @@ export default function SupervisorCard() {
           <Stack mt={8} direction={'row'} spacing={4}>
             <Button
               flex={1}
+              variant={'outline'}
+              colorScheme='green'
               fontSize={'sm'}
-              rounded={'full'}
               _focus={{
                 bg: 'gray.200',
-              }}>
+              }}
+              _hover={{
+                bg : 'green.400',
+                color : 'white'   
+              }}
+              >
               Contact
             </Button>
             <Button
+            onClick={() => {
+              setId(supervisor.id);
+              onOpenForSupervisor()
+              console.log(supervisorId);
+              
+            }}
               flex={1}
+              variant={'outline'}
+              colorScheme='blue'
               fontSize={'sm'}
-              rounded={'full'}
-              bg={'blue.400'}
-              color={'white'}
-              boxShadow={
-                '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-              }
-              _hover={{
-                bg: 'blue.500',
-              }}
               _focus={{
-                bg: 'blue.500',
-              }}>
+                bg: 'gray.200',
+              }}
+              _hover={{
+                bg : 'blue.400',
+                color : 'white'   
+              }}
+              >
               Assign
             </Button>
           </Stack>

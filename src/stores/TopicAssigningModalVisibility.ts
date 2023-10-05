@@ -1,16 +1,17 @@
 
 import { create } from "zustand"
 
-interface TopicAssigningModalVisibility {
-    isAssignOpen : boolean,
-    onOpenAssign : () => void
-    onCloseAssign : () => void
+interface TopicAssigningModalVisibilityProps {
+    isOpenForTopic : boolean,
+    onOpenForTopic : () => void,
+    onCloseForTopic : () => void
+
 }
 
-const TopicAssigningModalVisibility = create<TopicAssigningModalVisibility>(set =>({
-    isAssignOpen : false,
-    onOpenAssign : () => set(() => ({isAssignOpen : true})),
-    onCloseAssign : () => set(() => ({isAssignOpen : false}))
+const TopicAssigningModalVisibility = create<TopicAssigningModalVisibilityProps>(set =>({
+    isOpenForTopic : false,
+    onOpenForTopic : () => set(() => ({isOpenForTopic : true})),
+    onCloseForTopic : () => set(() => ({isOpenForTopic : false}))
 }))
 
 export default TopicAssigningModalVisibility;

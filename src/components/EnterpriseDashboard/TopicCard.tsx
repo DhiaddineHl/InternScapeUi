@@ -6,19 +6,47 @@ import TopicModalVisibility from '../../stores/TopicModalVisibility';
 import TopicIdSetter from '../../stores/TopicIdSetter';
 import TopicAssigningModalVisibility from '../../stores/TopicAssigningModalVisibility';
 import TopicAssigningModal from './TopicAssigningModal';
+import TopicCreationModalVisibility from '../../stores/TopicCreationModalVisibility';
+import TopicCreationModal from './TopicCreationModal';
+import useTopicCreation from '../../hooks/enterpriseAppHooks/useTopicCreation';
+import { useForm } from 'react-hook-form';
+import TopicDeletionConfiramationModalVisibility from '../../stores/TopicDeletionConfirmationModalVisibility';
+import TopicDeleteConfiramtionModal from './TopicDeleteConfiramtionModal';
 
 const TopicCard = () => {
 
 
+
   const {data : topics, error, isLoading} = useTopics();
+  const createTopic = useTopicCreation();
+
   const {onOpen, isOpen} = TopicModalVisibility();
-  const {isAssignOpen, onOpenAssign, onCloseAssign} = TopicAssigningModalVisibility();
+  const {isOpenForTopic, onOpenForTopic, onCloseForTopic} = TopicAssigningModalVisibility();
+  const {isTopicCreationOpen, onOpenTopicCreation} = TopicCreationModalVisibility();
+  const {isDeleteTopicOpen, onCloseForTopicDelete, onOpenForTopicDelete} = TopicDeletionConfiramationModalVisibility();
+    
   const {setId, topicId} = TopicIdSetter();
+
+
   return (
     <>
     {isLoading && <Spinner />}
     {isOpen && <TopicDescriptionModal />}
-    {isAssignOpen && <TopicAssigningModal />}
+    {isOpenForTopic && <TopicAssigningModal />}
+    {isTopicCreationOpen && <TopicCreationModal />}
+    {isDeleteTopicOpen && <TopicDeleteConfiramtionModal />}
+    <Button
+                onClick={onOpenTopicCreation}
+                flex={1}
+                variant={'outline'}
+                colorScheme='blue'
+                fontSize={'m'}
+                _focus={{
+                  bg: 'blue.400',
+                  color : 'white'
+                }}>
+                Add topic
+              </Button>
     <Grid templateColumns='repeat(2, 1fr)' gap={2} >
     {topics?.map(topic => (
       <GridItem  key={topic.id} >
@@ -27,7 +55,10 @@ const TopicCard = () => {
         <Flex>
           <Heading size='md'>{topic.title}</Heading>
           <Spacer />
-          <Button colorScheme='red'>
+          <Button onClick={() => {
+            setId(topic.id);
+            onOpenForTopicDelete();
+          }} colorScheme='red'>
             <DeleteIcon />
           </Button>
         </Flex>
@@ -63,7 +94,7 @@ const TopicCard = () => {
               <Button
               onClick={() => {
                 setId(topic.id)
-                onOpenAssign()
+                onOpenForTopic()
               }
               }
               isDisabled={!topic.isAvailable}
