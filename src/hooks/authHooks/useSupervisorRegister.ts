@@ -15,8 +15,6 @@ interface Supervisor {
     speciality : string,
     phone : string
     password : string,
-    interns : Intern[],
-    topics : Topic[]
   }
 
 
@@ -28,7 +26,7 @@ const useRegisterSupervisor = () => {
     return useMutation({
         mutationFn : (supervisor : Supervisor ) =>
           axios
-          .post<Response>("/api/v1/auth/register/supervisor", supervisor)
+          .post<Response>("http://localhost:8080/api/v1/auth/register/supervisor", supervisor)
           .then(res =>{ 
             console.log(res.data);
             

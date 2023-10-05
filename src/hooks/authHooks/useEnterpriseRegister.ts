@@ -31,7 +31,7 @@ const useRegisterEnterprise = () => {
     return useMutation({
         mutationFn : (enterprise :Enterprsie ) =>
           axios
-          .post<Response>("/api/v1/auth/register/enterprise", enterprise)
+          .post<Response>("http://localhost:8080/api/v1/auth/register/enterprise", enterprise)
           .then(res =>{ 
             console.log(res.data);
             

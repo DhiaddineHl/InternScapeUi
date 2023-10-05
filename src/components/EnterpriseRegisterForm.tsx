@@ -18,15 +18,23 @@ import { useState } from 'react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { Link } from 'react-router-dom'
 import { FieldValues, useForm } from 'react-hook-form'
+import useRegisterEnterprise from '../hooks/authHooks/useEnterpriseRegister'
 
 export default function EnterpriseRegisterForm() {
 
   const [showPassword, setShowPassword] = useState(false)
   const {register, handleSubmit} = useForm();
+  const registerEnterprise = useRegisterEnterprise();
 
   const onRegister = (data : FieldValues) => {
     console.log(data);
-    
+    registerEnterprise.mutate({
+      name : data.name,
+      field : data.field,
+      phone : data.phone,
+      email : data.email,
+      password : data.password
+    })
   }
 
   return (
@@ -85,6 +93,7 @@ export default function EnterpriseRegisterForm() {
                 </FormControl>
                 <Stack spacing={10} pt={2}>
                   <Button
+                  isLoading={registerEnterprise.isLoading}
                   type='submit'
                     loadingText="Submitting"
                     size="lg"

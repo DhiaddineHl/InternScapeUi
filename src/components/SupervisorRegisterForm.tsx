@@ -18,14 +18,26 @@ import {
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { Link } from 'react-router-dom'
 import { FieldValues, useForm } from 'react-hook-form'
+import useRegisterSupervisor from '../hooks/authHooks/useSupervisorRegister'
   
   export default function SupervisorRegisterForm() {
     const [showPassword, setShowPassword] = useState(false)
 
     const{register, handleSubmit} = useForm();
 
+    const registerSupervisor = useRegisterSupervisor();
+
     const onRegister = (data : FieldValues) => {
       console.log(data);
+
+      registerSupervisor.mutate({
+        name : data.name,
+        speciality : data.speciality,
+        phone : data.phone,
+        email : data.email,
+        password : data.password,
+        enterpriseEmail : data.enterpriseEmail
+      })
       
     }
   
@@ -89,6 +101,7 @@ import { FieldValues, useForm } from 'react-hook-form'
                 </FormControl>
                 <Stack spacing={10} pt={2}>
                   <Button
+                  isLoading={registerSupervisor.isLoading}
                   type='submit'
                     loadingText="Submitting"
                     size="lg"

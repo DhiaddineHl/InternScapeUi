@@ -6,14 +6,13 @@ import { useToast } from "@chakra-ui/react";
 
 
 
-interface Intern {
+export interface Intern {
     name : string,
     email : string,
     enterpriseEmail : string,
     speciality : string,
     phone : string
-    password : string,
-    rating : number
+    password : string
   }
 
 
@@ -25,7 +24,7 @@ const useRegisterIntern = () => {
     return useMutation({
         mutationFn : (intern : Intern ) =>
           axios
-          .post<Response>("/api/v1/auth/register/intern", intern)
+          .post<Response>("http://localhost:8080/api/v1/auth/register/intern", intern)
           .then(res =>{ 
             console.log(res.data);
             
