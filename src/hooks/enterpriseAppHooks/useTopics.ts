@@ -1,9 +1,10 @@
 
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
+import UserCredentialsSetter from "../../stores/UserCredentialsSetter"
 
 
-interface Topic {
+export interface Topic {
     id : number
     title : string
     description : string
@@ -26,6 +27,7 @@ const useTopics = () => {
     const enterpriseId = localStorage.getItem('userId');
     const token = localStorage.getItem('token')
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
 
     const fetchInterns = () =>
     axios

@@ -5,7 +5,7 @@ import {FieldValues, useForm } from 'react-hook-form';
 import TopicIdSetter from '../../stores/TopicIdSetter';
 import useTopicAssigning from '../../hooks/enterpriseAppHooks/useTopicAssigning';
 
-const InternAssigningModal = () => {
+const TopicAssigningModal = () => {
 
     const {isOpenForTopic,onOpenForTopic,onCloseForTopic} = TopicAssigningModalVisibility();
     const {data : interns, error, isLoading} = useInterns();
@@ -55,4 +55,4 @@ const InternAssigningModal = () => {
   )
 }
 
-export default InternAssigningModal;
+export default TopicAssigningModal;
