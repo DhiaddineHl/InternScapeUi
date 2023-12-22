@@ -18,13 +18,24 @@ import {
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { Link } from 'react-router-dom'
 import { FieldValues, useForm } from 'react-hook-form'
+import useRegisterIntern from '../hooks/authHooks/useInternRegister'
   
   export default function InternRegisterForm() {
     const [showPassword, setShowPassword] = useState(false)
     const {register, handleSubmit} = useForm();
+    const registerIntern = useRegisterIntern();
 
     const onRegister = (data : FieldValues) => {
       console.log(data);
+
+      registerIntern.mutate({
+        name : data.name,
+        speciality : data.speciality,
+        phone : data.phone,
+        email : data.email,
+        password : data.password,
+        enterpriseEmail : data.enterpriseEmail
+      })
       
     }
   
@@ -88,6 +99,7 @@ import { FieldValues, useForm } from 'react-hook-form'
                 </FormControl>
                 <Stack spacing={10} pt={2}>
                   <Button
+                  isLoading={registerIntern.isLoading}
                   type='submit'
                     loadingText="Submitting"
                     size="lg"
