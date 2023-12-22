@@ -2,12 +2,14 @@ import { FlexProps, Text, Flex, useColorModeValue, IconButton, HStack, Menu, Men
 
 import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi"
 import { useNavigate } from "react-router-dom"
+import UserCredentialsSetter from "../../../stores/UserCredentialsSetter"
 
 interface MobileProps extends FlexProps {
     onOpen: () => void
   }
   const name = localStorage.getItem('userName');
   const role = localStorage.getItem('role');
+
 
   const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 

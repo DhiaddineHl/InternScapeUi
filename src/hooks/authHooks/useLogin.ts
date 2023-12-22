@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query"
 import axios, { AxiosError } from "axios"
 import { useNavigate } from "react-router-dom";
 import { useToast } from '@chakra-ui/react';
+import UserCredentialsSetter from "../../stores/UserCredentialsSetter";
 
 
 
@@ -34,11 +35,14 @@ const useLogin = () => {
           .post<Response>("http://localhost:8080/api/v1/auth/authenticate", creadentials)
           .then(res =>{ 
             console.log(res.data);
+
+            localStorage.clear();
             
             localStorage.setItem('token', res.data.accessToken)
             localStorage.setItem('role', res.data.userType)
             localStorage.setItem('userId', res.data.userId.toString())
             localStorage.setItem('userName', res.data.userName)
+
 
           }),
           onSuccess : () =>{

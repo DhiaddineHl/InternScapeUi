@@ -66,6 +66,7 @@ export default function LoginForm() {
                     <Text color={'blue.400'}>Forgot password?</Text>
                   </Stack>
                   <Button
+                  isLoading={loginUser.isLoading}
                   type='submit'
                     bg={'blue.400'}
                     color={'white'}
