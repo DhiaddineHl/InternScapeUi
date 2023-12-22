@@ -1,18 +1,9 @@
 import {Button, Grid, GridItem, Spinner} from '@chakra-ui/react'
 import useTopics from '../../../hooks/enterpriseAppHooks/useTopics'
-import TopicDescriptionModal from '../TopicDescriptionModal';
-import TopicModalVisibility from '../../../stores/TopicModalVisibility';
-import TopicIdSetter from '../../../stores/TopicIdSetter';
 import TopicAssigningModalVisibility from '../../../stores/TopicAssigningModalVisibility';
-import TopicAssigningModal from '../TopicAssigningModal';
-import TopicCreationModalVisibility from '../../../stores/TopicCreationModalVisibility';
-import TopicCreationModal from '../TopicCreationModal';
 import useTopicCreation from '../../../hooks/enterpriseAppHooks/useTopicCreation';
 import TopicDeletionConfiramationModalVisibility from '../../../stores/TopicDeletionConfirmationModalVisibility';
-import TopicDeleteConfiramtionModal from '../TopicDeleteConfiramtionModal';
 import TopicCardElement from './TopicCardElement';
-import Test from './Test';
-import useTopicDescription from '../../../hooks/enterpriseAppHooks/useTopicDescription';
 import TopicDescriptionModalStore from '../../../stores/TopicDescriptionModalStore';
 
 const TopicGrid = () => {
@@ -32,29 +23,9 @@ const TopicGrid = () => {
       descriptionContent ? topicModalDescription.setContent(descriptionContent) : <p>Error loading the topic description</p>
     }
 
-    
-
 
   return (
     <>
-    {/* {isLoading && <Spinner />}
-    {isOpen && <TopicDescriptionModal />}
-    {isOpenForTopic && <TopicAssigningModal />}
-    {isTopicCreationOpen && <TopicCreationModal />}
-    {isDeleteTopicOpen && <TopicDeleteConfiramtionModal />}
-    <Button
-                onClick={onOpenTopicCreation}
-                flex={1}
-                variant={'outline'}
-                colorScheme='blue'
-                fontSize={'m'}
-                _focus={{
-                  bg: 'blue.400',
-                  color : 'white'
-                }}>
-                Add topic
-              </Button> */}
-
     <Grid templateColumns='repeat(2, 1fr)' gap={2} >
     {topics?.map(topic => (
       <GridItem  key={topic.id} >
