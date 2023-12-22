@@ -3,13 +3,14 @@ import React from 'react'
 import TopicModalVisibility from '../../stores/TopicModalVisibility'
 import useTopicDescription from '../../hooks/enterpriseAppHooks/useTopicDescription';
 import TopicIdSetter from '../../stores/TopicIdSetter';
+import TopicDescriptionModalStore from '../../stores/TopicDescriptionModalStore';
 
 
 
 const TopicDescriptionModal = () => {
 
-    const {isOpen, onOpen, onClose} = TopicModalVisibility();
-    const getDescription = useTopicDescription(TopicIdSetter(s=>s.topicId));
+    const {isOpen, onClose, content} = TopicDescriptionModalStore();
+    // const getDescription = useTopicDescription(TopicIdSetter(s=>s.topicId));
 
   return (
     <Modal onClose={onClose} isOpen={isOpen} isCentered>
@@ -18,7 +19,7 @@ const TopicDescriptionModal = () => {
       <ModalHeader>Topic description</ModalHeader>
       <ModalCloseButton />
       <ModalBody>
-        {getDescription.data}
+        {content}
       </ModalBody>
       <ModalFooter>
         <Button onClick={onClose}>Close</Button>

@@ -1,4 +1,4 @@
-import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from '@chakra-ui/react'
+import {Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from '@chakra-ui/react'
 import React from 'react'
 import TopicCreationModalVisibility from '../../stores/TopicCreationModalVisibility'
 import { FieldValues, useForm } from 'react-hook-form';
@@ -7,7 +7,7 @@ import useTopicCreation from '../../hooks/enterpriseAppHooks/useTopicCreation';
 const TopicCreationModal = () => {
 
 
-    const {isTopicCreationOpen, onCloseTopicCration, onOpenTopicCreation} = TopicCreationModalVisibility();
+    const {isTopicCreationOpen, onCloseTopicCration} = TopicCreationModalVisibility();
     const createTopic = useTopicCreation();
     const {handleSubmit, register} = useForm();
     const initialRef = React.useRef(null)

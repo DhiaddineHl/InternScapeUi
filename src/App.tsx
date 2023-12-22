@@ -1,15 +1,12 @@
-import EnterpriseRegisterForm from "./components/EnterpriseRegisterForm"
-import IndividuelRegisterForm from "./components/SupervisorRegisterForm"
 import LoginForm from "./components/LoginForm"
-import InternRegisterForm from "./components/InternRegisterForm"
 import RegisterPage from "./components/RegisterPage"
 import { Route, Routes } from "react-router-dom"
-import SidebarWithHeader from "./components/EnterpriseDashboard/SideBar/SideBar"
-import SupervisorCard from "./components/EnterpriseDashboard/SupervisorCard"
 import SupervisorsSection from "./pages/SupervisorsSection"
 import TopicsSection from "./pages/TopicsSection"
 import InternsSection from "./pages/InternsSection"
 import HomePage from "./pages/HomePage"
+import TopicCardElement from "./components/EnterpriseDashboard/Topics/TopicCardElement"
+import TopicGrid from "./components/EnterpriseDashboard/Topics/TopicGrid"
 
 
 function App() {
@@ -23,6 +20,7 @@ function App() {
       <Route element={<TopicsSection />} path="/topics" ></Route>
       <Route element={<HomePage />} path="/Home" ></Route>
     </Routes>
+
 
   )
 }

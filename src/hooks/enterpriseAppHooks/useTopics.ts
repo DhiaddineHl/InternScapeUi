@@ -12,7 +12,7 @@ export interface Topic {
     isAvailable : boolean
     internName : string,
     supervisorName : string
-    activities : Activity[]
+    // activities : Activity[]
 }
 
 interface Activity {
