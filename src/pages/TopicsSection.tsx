@@ -3,13 +3,11 @@ import TopicGrid from '../components/EnterpriseDashboard/Topics/TopicGrid'
 import { Button } from '@chakra-ui/react'
 import TopicCreationModalVisibility from '../stores/TopicCreationModalVisibility';
 import TopicCreationModal from '../components/EnterpriseDashboard/TopicCreationModal';
-import TopicDescriptionModalStore from '../stores/TopicDescriptionModalStore';
 import TopicDescriptionModal from '../components/EnterpriseDashboard/TopicDescriptionModal';
 
 const TopicsSection = () => {
 
   const createTopic = TopicCreationModalVisibility();
-  // const topicDescription = TopicDescriptionModalStore();
 
 
   return (
