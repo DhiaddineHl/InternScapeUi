@@ -1,8 +1,7 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useToast } from '@chakra-ui/react';
 import { Error } from "../authHooks/useLogin";
-import TopicCreationModalVisibility from "../../stores/TopicCreationModalVisibility";
 
 
 
@@ -11,10 +10,11 @@ const useTopicDelete = (topicId : number) => {
     const token = localStorage.getItem('token')
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     const topicID = topicId.toString();
+    const queryClient = useQueryClient()
+
 
 
     const toast = useToast();
-    const closeModal = TopicCreationModalVisibility(s => s.onCloseTopicCration);
     
     return useMutation({
         mutationFn : () =>
@@ -24,6 +24,11 @@ const useTopicDelete = (topicId : number) => {
                 ),
 
             onSuccess : () =>{
+
+                // invalidate the cache
+                queryClient.invalidateQueries({
+                    queryKey : ['topics']
+                });
                 toast({
                     title: 'Topic deleted successfully',
                     description: "",
@@ -31,7 +36,7 @@ const useTopicDelete = (topicId : number) => {
                     duration: 4000,
                     isClosable: true,
                   });
-                  closeModal();
+
             },
             onError : (error : AxiosError<Error>) => {
                 const errorMessage = error.response?.data.errorMessage;

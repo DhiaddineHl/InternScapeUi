@@ -1,7 +1,6 @@
-import { DeleteIcon } from '@chakra-ui/icons';
 import { Card, CardHeader, Flex, Heading, Spacer, Button, CardBody, Stack, StackDivider, Text, Box } from '@chakra-ui/react';
-import { Topic } from '../../../hooks/enterpriseAppHooks/useTopics';
-import { set } from 'react-hook-form';
+import TopicDeleteButton from '../TopicDeleteButton';
+
 
 
 interface TopicCardElementProps {
@@ -24,10 +23,7 @@ const TopicCardElement = ({id, title, internName, supervisorName, isAvailable, d
         <Flex>
           <Heading size='md'>{title}</Heading>
           <Spacer />
-          <Button onClick={() => {
-          }} colorScheme='red'>
-            <DeleteIcon />
-          </Button>
+          <TopicDeleteButton topicId={id} />
         </Flex>
           </CardHeader>
           <CardBody>

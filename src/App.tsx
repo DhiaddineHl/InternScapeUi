@@ -1,5 +1,5 @@
 import LoginForm from "./components/LoginForm"
-import RegisterPage from "./components/RegisterPage"
+import RegisterPage from "./pages/RegisterPage"
 import { Route, Routes } from "react-router-dom"
 import SupervisorsSection from "./pages/SupervisorsSection"
 import TopicsSection from "./pages/TopicsSection"

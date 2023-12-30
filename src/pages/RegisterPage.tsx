@@ -1,7 +1,7 @@
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import EnterpriseRegisterForm from './EnterpriseRegisterForm'
-import SupervisorRegisterForm from './SupervisorRegisterForm'
-import InternRegisterForm from './InternRegisterForm'
+import EnterpriseRegisterForm from '../components/EnterpriseRegisterForm'
+import SupervisorRegisterForm from '../components/SupervisorRegisterForm'
+import InternRegisterForm from '../components/InternRegisterForm'
 
 
 

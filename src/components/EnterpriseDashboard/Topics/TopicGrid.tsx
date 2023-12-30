@@ -16,7 +16,8 @@ const TopicGrid = () => {
   const {isDeleteTopicOpen, onCloseForTopicDelete, onOpenForTopicDelete} = TopicDeletionConfiramationModalVisibility();
   const topicModalDescription = TopicDescriptionModalStore();
 
-
+  // console.log(topics);
+  
 
     const setDescription = (topicId : number) => {
       const descriptionContent = topics?.find(topic => topic.id === topicId)?.description;
