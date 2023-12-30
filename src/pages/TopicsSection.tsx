@@ -1,31 +1,14 @@
 import SidebarWithHeader from '../components/EnterpriseDashboard/SideBar/SideBar'
 import TopicGrid from '../components/EnterpriseDashboard/Topics/TopicGrid'
-import { Button } from '@chakra-ui/react'
-import TopicCreationModalVisibility from '../stores/TopicCreationModalVisibility';
-import TopicCreationModal from '../components/EnterpriseDashboard/TopicCreationModal';
-import TopicDescriptionModal from '../components/EnterpriseDashboard/TopicDescriptionModal';
+import TopicDescriptionModal from '../components/EnterpriseDashboard/Topics/TopicDescriptionModal';
+import TopicCreationButton from '../components/EnterpriseDashboard/Topics/TopicCreationButton';
 
 const TopicsSection = () => {
 
-  const createTopic = TopicCreationModalVisibility();
-
-
   return (
     <SidebarWithHeader>
-    <TopicCreationModal />
+    <TopicCreationButton />
     <TopicDescriptionModal />
-          <Button
-                onClick={createTopic.onOpenTopicCreation}
-                flex={1}
-                variant={'outline'}
-                colorScheme='blue'
-                fontSize={'m'}
-                _focus={{
-                  bg: 'blue.400',
-                  color : 'white'
-                }}>
-                Add topic
-              </Button>
       <TopicGrid />
     </SidebarWithHeader>
   )

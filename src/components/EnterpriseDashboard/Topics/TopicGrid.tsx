@@ -1,8 +1,5 @@
 import {Button, Grid, GridItem, Spinner} from '@chakra-ui/react'
 import useTopics from '../../../hooks/enterpriseAppHooks/useTopics'
-import TopicAssigningModalVisibility from '../../../stores/TopicAssigningModalVisibility';
-import useTopicCreation from '../../../hooks/enterpriseAppHooks/useTopicCreation';
-import TopicDeletionConfiramationModalVisibility from '../../../stores/TopicDeletionConfirmationModalVisibility';
 import TopicCardElement from './TopicCardElement';
 import TopicDescriptionModalStore from '../../../stores/TopicDescriptionModalStore';
 
@@ -10,20 +7,15 @@ const TopicGrid = () => {
 
 
 
-  const {data : topics, error, isLoading} = useTopics();
-  const createTopic = useTopicCreation();
-  const {isOpenForTopic, onOpenForTopic, onCloseForTopic} = TopicAssigningModalVisibility();
-  const {isDeleteTopicOpen, onCloseForTopicDelete, onOpenForTopicDelete} = TopicDeletionConfiramationModalVisibility();
+  const {data : topics} = useTopics();
   const topicModalDescription = TopicDescriptionModalStore();
 
   // console.log(topics);
   
-
     const setDescription = (topicId : number) => {
       const descriptionContent = topics?.find(topic => topic.id === topicId)?.description;
       descriptionContent ? topicModalDescription.setContent(descriptionContent) : <p>Error loading the topic description</p>
     }
-
 
   return (
     <>

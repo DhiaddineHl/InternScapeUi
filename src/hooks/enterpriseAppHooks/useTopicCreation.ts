@@ -3,7 +3,7 @@ import axios, { AxiosError } from "axios";
 import { useToast } from '@chakra-ui/react';
 import { Error } from "../authHooks/useLogin";
 import TopicCreationModalVisibility from "../../stores/TopicCreationModalVisibility";
-import { Topic } from "./useTopics";
+
 
 
 interface TopicCreationRequest {
@@ -39,18 +39,7 @@ const useTopicCreation = () => {
                 queryClient.invalidateQueries({
                     queryKey : ['topics']
                 });
-                //update the data in the cache
-                // queryClient.setQueryData<Topic[]>(['topics', enterpriseId], topics => {
-                //     return [...topics || [], {
-                //         title : creationRequest.title,
-                //         description : creationRequest.description,
-                //         duration : creationRequest.duration,
-                //         field : creationRequest.field,
-                //         enterprise : {
-                //             id : enterpriseId
-                //         }
-                //     }]
-                // })
+                
                 toast({
                     title: 'Topic created successfully',
                     description: "",

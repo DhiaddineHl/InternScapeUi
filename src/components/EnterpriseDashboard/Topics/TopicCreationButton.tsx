@@ -1,38 +1,51 @@
-import {Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from '@chakra-ui/react'
+import {Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
-import TopicCreationModalVisibility from '../../stores/TopicCreationModalVisibility'
 import { FieldValues, useForm } from 'react-hook-form';
-import useTopicCreation from '../../hooks/enterpriseAppHooks/useTopicCreation';
+import useTopicCreation from '../../../hooks/enterpriseAppHooks/useTopicCreation';
 
-const TopicCreationModal = () => {
+const TopicCreationButton = () => {
 
-
-    const {isTopicCreationOpen, onCloseTopicCration} = TopicCreationModalVisibility();
     const createTopic = useTopicCreation();
+
     const {handleSubmit, register} = useForm();
+
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
 
     const onCreate = (data : FieldValues) => {
-
         console.log(data);
-        
-
         createTopic.mutate({
             title : data.title,
             description : data.description,
             duration : data.duration,
             field : data.field
         })
+        if(createTopic.isSuccess) {
+          onClose();
+        }
     }
 
   return (
     <>
+     <Button
+        onClick={onOpen}
+        flex={1}
+        variant={'outline'}
+        colorScheme='blue'
+        fontSize={'m'}
+        _focus={{
+          bg: 'blue.400',
+          color : 'white'
+          }}>
+          Add topic
+      </Button>         
     <Modal
       initialFocusRef={initialRef}
       finalFocusRef={finalRef}
-      isOpen={isTopicCreationOpen}
-      onClose={onCloseTopicCration}
+      isOpen={isOpen}
+      onClose={onClose}
     >
       <ModalOverlay />
       <form onSubmit={handleSubmit(onCreate)}>
@@ -63,7 +76,7 @@ const TopicCreationModal = () => {
               <Button isLoading={createTopic.isLoading} type='submit' colorScheme='blue' mr={3}>
                 Save
               </Button>
-              <Button onClick={onCloseTopicCration}>Cancel</Button>
+              <Button onClick={onClose}>Cancel</Button>
             </ModalFooter>
           </ModalContent>
       </form>
@@ -72,4 +85,4 @@ const TopicCreationModal = () => {
   )
 }
 
-export default TopicCreationModal
+export default TopicCreationButton

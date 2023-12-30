@@ -1,5 +1,6 @@
 import { Card, CardHeader, Flex, Heading, Spacer, Button, CardBody, Stack, StackDivider, Text, Box } from '@chakra-ui/react';
-import TopicDeleteButton from '../TopicDeleteButton';
+import TopicDeleteButton from './TopicDeleteButton';
+import TopicAssignButton from './TopicAssignButton';
 
 
 
@@ -51,18 +52,7 @@ const TopicCardElement = ({id, title, internName, supervisorName, isAvailable, d
           </Box>
           
           <Stack mt={8} direction={'row'} spacing={4}>
-              <Button
-                flex={1}
-                variant={'outline'}
-                colorScheme='green'
-                fontSize={'sm'}
-                _focus={{
-                  bg: 'gray.200',
-                }}
-                isDisabled={!isAvailable}
-                >
-                Assign
-              </Button>
+              <TopicAssignButton topicId={id} isAvailable={isAvailable} />
               <Button
                 flex={1}
                 variant={'outline'}

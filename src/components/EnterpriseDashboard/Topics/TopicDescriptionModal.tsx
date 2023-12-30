@@ -1,5 +1,5 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button } from '@chakra-ui/react'
-import TopicDescriptionModalStore from '../../stores/TopicDescriptionModalStore';
+import TopicDescriptionModalStore from '../../../stores/TopicDescriptionModalStore';
 
 
 

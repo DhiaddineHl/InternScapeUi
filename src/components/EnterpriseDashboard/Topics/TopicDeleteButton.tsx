@@ -1,7 +1,7 @@
 import { Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Box, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 import { DeleteIcon } from '@chakra-ui/icons'
-import useTopicDelete from '../../hooks/enterpriseAppHooks/useTopicDelete'
+import useTopicDelete from '../../../hooks/enterpriseAppHooks/useTopicDelete'
 
 
 const TopicDeleteButton = ({topicId} : {topicId : number}) => {
